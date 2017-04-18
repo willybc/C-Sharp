@@ -13,26 +13,26 @@ namespace institucion
         {
             Console.WriteLine("GESTION DE INSTITUCION");
 
-            var alumno1 = new Alumno()
+            var alumno1 = new Alumno("Willy", "Bardales" )
             {
               Id=1,
-              Nombre="Willy",
-              Apellido="Bardales",
               Edad=20,
               Teléfono=1166861931,
               Email="willybc06@gmail.com"
             };
 
-            var persona1 = new Persona()
+            var profesor1 = new Profesor()
             {
                 Id = 1,
-                Nombre = "Juan"
-                Apellido = "Perez",
-                Edad = 25,
+                Nombre = "Juan",
+                Apellido = "Ruiz",
+                Edad = 34,
                 Teléfono = 55555555,
-                
-            }
+                Catedra="Programacion"
+            };
 
+
+            Console.WriteLine(Persona.ContadorPersonas);
 
             Console.ReadLine();
             

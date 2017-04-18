@@ -8,6 +8,8 @@ namespace institucion.Models
 {
     class Persona
     {
+        public static int ContadorPersonas = 0;
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -17,10 +19,13 @@ namespace institucion.Models
         {
             get {
                 return Nombre + " " + Apellido;
-                }
+            }
         }
 
-
+        static Persona()
+        {
+            ContadorPersonas++;
+        }
 
     }
 
