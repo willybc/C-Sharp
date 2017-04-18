@@ -1,0 +1,6 @@
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\bin\Debug\institucion.exe.config
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\bin\Debug\institucion.exe
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\bin\Debug\institucion.pdb
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\obj\Debug\institucion.csprojResolveAssemblyReference.cache
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\obj\Debug\institucion.exe
+c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\obj\Debug\institucion.pdb
