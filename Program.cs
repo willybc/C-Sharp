@@ -1,5 +1,6 @@
 ﻿using institucion.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,41 @@ namespace institucion
     {
         static void Main(string[] args)
         {
+            List<Persona> listaPersonas = new List<Persona>();
+
+            listaPersonas.Add (new Alumno("Pedro", "Ferdandez") { NickName="Pedrito"});
+            listaPersonas.Add (new Profesor(){ Nombre = "Profesor", Apellido = "X" });
+            listaPersonas.Add (new Alumno("Pedro", "Pedroza"));
+            listaPersonas.Add (new Profesor(){ Nombre = "Maf", Apellido = "Neto" });
+            
+
+            foreach (var obj in listaPersonas)
+            {
+
+                if (obj is Alumno)
+                {
+                    var al = (Alumno)obj;
+                    Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
+                }
+                else
+                {
+                    var per = obj as Persona;
+
+                    if (per != null)
+                        Console.WriteLine(per.NombreCompleto);
+                }
+            }
+
+            Console.ReadLine();
+        }
+
+        private void Rutina4()
+        {
             Persona[] arregloPersonas = new Persona[5];
 
             var tam = arregloPersonas.Length;
 
-            arregloPersonas[0] = new Alumno("Pedro", "Ferdandez") { NickName="Pedrito"};
+            arregloPersonas[0] = new Alumno("Pedro", "Ferdandez") { NickName = "Pedrito" };
             arregloPersonas[1] = new Profesor()
             { Nombre = "Profesor", Apellido = "X" };
 
@@ -27,23 +58,18 @@ namespace institucion
             //arregloPersonas[5] = new Profesor()
             //{ Nombre = "Alberto", Apellido = "Stone" };
 
-            for ( int i = 0; i < arregloPersonas.Length; i++)
+            for (int i = 0; i < arregloPersonas.Length; i++)
             {
-                if(arregloPersonas[i] is Alumno)
+                if (arregloPersonas[i] is Alumno)
                 {
                     var al = (Alumno)arregloPersonas[i];
-                    Console.WriteLine(al.NickName != null? al.NickName: al.NombreCompleto);
+                    Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
                 }
                 else
                 {
                     Console.WriteLine(arregloPersonas[i].NombreCompleto);
                 }
-
-                
             }
-
-            Console.ReadLine();
-        }
         
         private static void Rutina3()
         {
