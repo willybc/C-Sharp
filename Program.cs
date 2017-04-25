@@ -11,26 +11,59 @@ namespace institucion
     {
         static void Main(string[] args)
         {
+            Persona[] arregloPersonas = new Persona[5];
+
+            var tam = arregloPersonas.Length;
+
+            arregloPersonas[0] = new Alumno("Pedro", "Ferdandez") { NickName="Pedrito"};
+            arregloPersonas[1] = new Profesor()
+            { Nombre = "Profesor", Apellido = "X" };
+
+            arregloPersonas[2] = new Alumno("Pedro", "Pedroza");
+            arregloPersonas[3] = new Profesor()
+            { Nombre = "Maf", Apellido = "Neto" };
+
+            arregloPersonas[4] = new Alumno("Mathias", "Es");
+            //arregloPersonas[5] = new Profesor()
+            //{ Nombre = "Alberto", Apellido = "Stone" };
+
+            for ( int i = 0; i < arregloPersonas.Length; i++)
+            {
+                if(arregloPersonas[i] is Alumno)
+                {
+                    var al = (Alumno)arregloPersonas[i];
+                    Console.WriteLine(al.NickName != null? al.NickName: al.NombreCompleto);
+                }
+                else
+                {
+                    Console.WriteLine(arregloPersonas[i].NombreCompleto);
+                }
+
+                
+            }
+
+            Console.ReadLine();
+        }
+        
+        private static void Rutina3()
+        {
             var alumno = new Alumno("Victor", "Perez");
             var profesor = new Profesor();
             Persona persona = profesor;
 
-            alumno = (Alumno) persona;
+            alumno = (Alumno)persona;
 
-            if(persona is Alumno)
+            if (persona is Alumno)
             {
                 //.....
             }
 
             var tmpProfe = persona as Profesor;
 
-            if(tmpProfe != null)
+            if (tmpProfe != null)
             {
                 //.....
             }
-
-
-            Console.ReadLine();
         }
 
         private static void Rutina2()
