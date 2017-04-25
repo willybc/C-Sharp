@@ -11,6 +11,46 @@ namespace institucion
     {
         static void Main(string[] args)
         {
+            var alumno = new Alumno("Victor", "Perez");
+            var profesor = new Profesor();
+            Persona persona = profesor;
+
+            alumno = (Alumno) persona;
+
+            if(persona is Alumno)
+            {
+                //.....
+            }
+
+            var tmpProfe = persona as Profesor;
+
+            if(tmpProfe != null)
+            {
+                //.....
+            }
+
+
+            Console.ReadLine();
+        }
+
+        private static void Rutina2()
+        {
+            // -32.000 +32.000
+            short s = 32000;
+            int i = 33000;
+            float f = 2.35f;
+            decimal d = 0;
+
+            Console.WriteLine(i);
+            s = (short)i;
+            Console.WriteLine(s);
+            Console.WriteLine(f);
+            i = (int)f;
+            Console.WriteLine(i);
+        }
+
+        public void Rutina1()
+        {
             Console.WriteLine("GESTION DE INSTITUCION");
 
             Persona[] lista = new Persona[3];
@@ -95,11 +135,12 @@ namespace institucion
             /*ENUMERACIONES*/
             Console.WriteLine("E N U M E R A C I O N E S");
 
-            var alumnoEst = new Alumno("Pablo", "Number") {
+            var alumnoEst = new Alumno("Pablo", "Number")
+            {
                 Id = 6,
                 Edad = 86,
                 Telefono = 5660187,
-                Estado= EstadosAlumno.Activo
+                Estado = EstadosAlumno.Activo
             };
 
             Persona personaX = alumnoEst;
@@ -119,7 +160,9 @@ namespace institucion
 
 
             Console.ReadLine();
-
         }
+
+
+        
     }
 }
