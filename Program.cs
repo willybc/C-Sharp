@@ -51,6 +51,10 @@ namespace institucion
             {
                 Console.WriteLine($"Tipo {p.GetType()}");
                 Console.WriteLine(p.ConstruirResumen());
+
+                IEnteInstituto ente = p;
+
+                ente.ConstruirLlaveSecreta("Hola");
             }
 
 
