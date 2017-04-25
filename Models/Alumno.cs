@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace institucion.Models
-{
+{ 
     class Alumno : Persona
     {
         public string Email { get; set; }
-
+        public EstadosAlumno Estado { get; set; }
         private int Inasistencias { get; set; }
         public string NickName { get; set; }
         public int Telefono { get; set; }

@@ -92,6 +92,31 @@ namespace institucion
             Console.WriteLine($"Curso c = {c_class.Curso}");
             Console.WriteLine($"Curso Freak = {cursoFreakc_class.Curso}");
 
+            /*ENUMERACIONES*/
+            Console.WriteLine("E N U M E R A C I O N E S");
+
+            var alumnoEst = new Alumno("Pablo", "Number") {
+                Id = 6,
+                Edad = 86,
+                Telefono = 5660187,
+                Estado= EstadosAlumno.Activo
+            };
+
+            Persona personaX = alumnoEst;
+            Console.Write("Estado de alumno" + alumnoEst.Estado);
+
+            IEnteInstituto iei = alumnoEst;
+
+            Console.WriteLine("Estado de alumno" + alumnoEst.Estado);
+
+            Console.WriteLine($"Tipo: { typeof(EstadosAlumno)} ");
+            Console.WriteLine($"Tipo: { typeof(Alumno)} ");
+            Console.WriteLine($"Tipo: { alumnoEst.GetType() }");
+            Console.WriteLine($"Tipo: { personaX.GetType() }");
+
+            Console.WriteLine($"Nombre: { nameof(Alumno)} ");
+            Console.WriteLine($"Tamaño: { sizeof(int)} ");
+
 
             Console.ReadLine();
 
