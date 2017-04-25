@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace institucion.Models
 {
-    class Persona
+    public abstract class Persona
     {
         public static int ContadorPersonas = 0;
 
@@ -15,19 +15,24 @@ namespace institucion.Models
         public string Apellido { get; set; }
         public short Edad { get; set; }
         public int Teléfono { get; set; }
-        public string NombreCompleto
+        public virtual string NombreCompleto
         {
-            get {
+            get
+            {
                 return Nombre + " " + Apellido;
             }
         }
 
-        static Persona()
+        public Persona()
         {
             ContadorPersonas++;
         }
 
+        public abstract string ConstruirResumen();
+
+
+
     }
 
-  
+
 }
