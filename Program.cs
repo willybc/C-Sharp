@@ -1,4 +1,5 @@
-﻿using institucion.Models;
+﻿using institucion.Misc;
+using institucion.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,34 +11,80 @@ namespace institucion
 {
     class Program
     {
+        private static byte[] stringBytes;
+
         static void Main(string[] args)
         {
-            List<Persona> listaPersonas = new List<Persona>();
+            var profesor = new Profesor() { Id = 12, Nombre = "Mateo", Apellido = "Pereira", CodigoInterno = "PROFE_SMART" };
 
-            listaPersonas.Add (new Alumno("Pedro", "Ferdandez") { NickName="Pedrito"});
-            listaPersonas.Add (new Profesor(){ Nombre = "Profesor", Apellido = "X" });
-            listaPersonas.Add (new Alumno("Pedro", "Pedroza"));
-            listaPersonas.Add (new Profesor(){ Nombre = "Maf", Apellido = "Neto" });
+            var transmitter = new TransmisorDeDatos();
+            transmitter.InformacionEnviada += Transmitter_InformacionEnviada;
+            transmitter.InformacionEnviada += (obj, evtarg) =>
+            {
+                Console.WriteLine("WOOOOOOOOOOA");
+            };
+
+            transmitter.FormatearYEnviar(profesor, Reverseformatter,
+                "ALEXTROIO");
+
+            transmitter.InformacionEnviada -= Transmitter_InformacionEnviada;
+
+            transmitter.FormatearYEnviar(profesor,
+                (s) => new string(s.Reverse().ToArray<char>())
+                , "ALEXTROIO");
+
             
 
-            foreach (var obj in listaPersonas)
-            {
 
-                if (obj is Alumno)
-                {
-                    var al = (Alumno)obj;
-                    Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
-                }
-                else
-                {
-                    var per = obj as Persona;
 
-                    if (per != null)
-                        Console.WriteLine(per.NombreCompleto);
-                }
-            }
+
+
+
+
+
+            //List<Persona> listaPersonas = new List<Persona>();
+
+            //listaPersonas.Add (new Alumno("Pedro", "Ferdandez") { NickName="Pedrito"});
+            //listaPersonas.Add (new Profesor(){ Nombre = "Profesor", Apellido = "X" });
+            //listaPersonas.Add (new Alumno("Pedro", "Pedroza"));
+            //listaPersonas.Add (new Profesor(){ Nombre = "Maf", Apellido = "Neto" });
+
+
+            //foreach (var obj in listaPersonas)
+            //{
+
+            //    if (obj is Alumno)
+            //    {
+            //        var al = (Alumno)obj;
+            //        Console.WriteLine(al.NickName != null ? al.NickName : al.NombreCompleto);
+            //    }
+            //    else
+            //    {
+            //        var per = obj as Persona;
+
+            //        if (per != null)
+            //            Console.WriteLine(per.NombreCompleto);
+            //    }
+            //}
 
             Console.ReadLine();
+        }
+
+        private static void Transmitter_InformacionEnviada(object sender, EventArgs e)
+        {
+            Console.WriteLine("TRANSMISION DE INFORMACION");
+        }
+
+        private static string Reverseformatter(string input) => new string(input.Reverse().ToArray<char>());
+        
+
+        private static string formatter(string input)
+        {
+            var bytes = Encoding.UTF8.GetBytes(input);
+
+            var base64 = Convert.ToBase64String(bytes);
+
+            return base64;
         }
 
         private void Rutina4()
@@ -70,6 +117,7 @@ namespace institucion
                     Console.WriteLine(arregloPersonas[i].NombreCompleto);
                 }
             }
+        }
         
         private static void Rutina3()
         {
