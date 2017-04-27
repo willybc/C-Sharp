@@ -3,6 +3,7 @@ using institucion.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,30 +16,42 @@ namespace institucion
 
         static void Main(string[] args)
         {
-            var profesor = new Profesor() { Id = 12, Nombre = "Mateo", Apellido = "Pereira", CodigoInterno = "PROFE_SMART" };
+            var listaProfes = new List<Profesor>();
 
-            var transmitter = new TransmisorDeDatos();
-            transmitter.InformacionEnviada += Transmitter_InformacionEnviada;
-            transmitter.InformacionEnviada += (obj, evtarg) =>
+            string[] lineas = File.ReadAllLines("./Files/Profesores.txt");
+
+            int localId = 0;
+
+            foreach (var linea in lineas)
             {
-                Console.WriteLine("WOOOOOOOOOOA");
-            };
+                listaProfes.Add(new Profesor()
+                {
+                    Nombre = linea,
+                    Id = localId++
+                });
+            }
 
-            transmitter.FormatearYEnviar(profesor, Reverseformatter,
-                "ALEXTROIO");
+            foreach (var profe in listaProfes)
+            {
+                Console.WriteLine(profe.Nombre);
+            }
 
-            transmitter.InformacionEnviada -= Transmitter_InformacionEnviada;
+            var archivo = File.Open("profesBinarios.bin", 
+                FileMode.OpenOrCreate);
 
-            transmitter.FormatearYEnviar(profesor,
-                (s) => new string(s.Reverse().ToArray<char>())
-                , "ALEXTROIO");
+            var binFile = new BinaryWriter(archivo);
+            foreach (var profe in listaProfes)
+            {
+                var bytesNombre = Encoding.UTF8.GetBytes
+                    (profe.Nombre);
+                archivo.Write(bytesNombre, 0, bytesNombre.Length);
 
-            
+                binFile.Write(profe.Nombre);
+                binFile.Write(profe.Id);
+            }
 
-
-
-
-
+            binFile.Close();
+            archivo.Close();
 
 
 
@@ -68,6 +81,27 @@ namespace institucion
             //}
 
             Console.ReadLine();
+        }
+
+        private static void Rutina5()
+        {
+            var profesor = new Profesor() { Id = 12, Nombre = "Mateo", Apellido = "Pereira", CodigoInterno = "PROFE_SMART" };
+
+            var transmitter = new TransmisorDeDatos();
+            transmitter.InformacionEnviada += Transmitter_InformacionEnviada;
+            transmitter.InformacionEnviada += (obj, evtarg) =>
+            {
+                Console.WriteLine("WOOOOOOOOOOA");
+            };
+
+            transmitter.FormatearYEnviar(profesor, Reverseformatter,
+                "ALEXTROIO");
+
+            transmitter.InformacionEnviada -= Transmitter_InformacionEnviada;
+
+            transmitter.FormatearYEnviar(profesor,
+                (s) => new string(s.Reverse().ToArray<char>())
+                , "ALEXTROIO");
         }
 
         private static void Transmitter_InformacionEnviada(object sender, EventArgs e)

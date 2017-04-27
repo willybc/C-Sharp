@@ -4,3 +4,4 @@ c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion
 c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\obj\Debug\institucion.exe
 c:\users\usuariopc\documents\visual studio 2015\Projects\institucion\institucion\obj\Debug\institucion.pdb
 C:\Users\UsuarioPC\Documents\Visual Studio 2015\Projects\institucion\institucion\obj\Debug\institucion.csprojResolveAssemblyReference.cache
+C:\Users\UsuarioPC\Documents\Visual Studio 2015\Projects\institucion\institucion\bin\Debug\Files\Profesores.txt
